@@ -19,21 +19,23 @@ public class Recieve_robot_ip extends Thread{
     }
     public String recieve_result() {
         try {
+            System.out.println("3");
             //서버 수행
             server.bind(ip);
-
+            System.out.println("4");
             //클라이언트 접근을 대기
             client = server.accept();
-
+            System.out.println("5");
             //클라이언트가 보내준 값 읽기
             InputStream reciever = client.getInputStream();
             byte[] data = new byte[1024];
             reciever.read(data, 0, data.length);
-
+            System.out.println("6");
             //클라이언트가 보내준 값을 문자열로 변환
             String robot_ip;
             robot_ip = client.getInetAddress().toString();
             robot_ip = robot_ip.substring(robot_ip.indexOf("/")+1);
+            System.out.println("7");
             server.close();
             client.close();
             return robot_ip;
