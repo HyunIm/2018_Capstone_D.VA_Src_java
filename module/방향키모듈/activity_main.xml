@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/forward_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:text="Forward"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <Button
+        android:id="@+id/forward_left_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORWARD LEFT"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <Button
+        android:id="@+id/forward_right_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORWARD RIGHT"
+        tools:layout_editor_absoluteX="234dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <Button
+        android:id="@+id/reverse_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REVERSE"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+</android.support.v7.widget.LinearLayoutCompat>
