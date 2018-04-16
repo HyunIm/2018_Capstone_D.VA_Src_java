@@ -18,6 +18,8 @@ import java.io.IOException;
 public class Login extends AppCompatActivity {
     EditText editText_ID;
     EditText editText_Password;
+    String TrueSerialNumber = "NO";
+    String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,6 @@ public class Login extends AppCompatActivity {
     * */
     public void onButtonSignUp(View v)
     {
-        String result;
         Find_broadcast_ip broad_ip = new Find_broadcast_ip(this);
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
         broadcast.start();
@@ -62,7 +63,6 @@ public class Login extends AppCompatActivity {
         }
     }
     public void onButtonLogin(View v){
-        String result;
         Find_broadcast_ip broad_ip = new Find_broadcast_ip(this);
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
         broadcast.start();
@@ -89,17 +89,18 @@ public class Login extends AppCompatActivity {
             Send_id_pass id_pass = new Send_id_pass(result, ID + ":::" + Password );
             id_pass.start();
             id_pass.join();
-            String TrueSerialNumber = id_pass.get_result();
+            TrueSerialNumber = id_pass.get_result();
 
             // Serial Number가 맞다면 Login Class로 돌아가고, ID + ":::" + Password + ":::" + Serial Number를 반환
             if ("yes".equals(TrueSerialNumber)) {
-                Intent MoveLogin = new Intent(getApplicationContext(), Login.class);
-                startActivity(MoveLogin);
+                Toast.makeText(getApplicationContext(), "Log In!", Toast.LENGTH_LONG). show();
+                Intent MoveSignUp = new Intent(getApplicationContext(), SelectMenu.class);
+                MoveSignUp.putExtra("robot_ip", result);
+                startActivity(MoveSignUp);
             }
-
-            Intent MoveSignUp = new Intent(getApplicationContext(), SelectMenu.class);
-            MoveSignUp.putExtra("robot_ip", result);
-            startActivity(MoveSignUp);
+            else{
+                Toast.makeText(getApplicationContext(), "Check your ID or Password!", Toast.LENGTH_LONG). show();
+            }
         }
         catch(IOException e) {
             System.out.println("fail_recieve_robot_ip");

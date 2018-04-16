@@ -11,7 +11,7 @@ public class SelectMenu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
     public void onButtonRobotCntrol(View v){
-        Intent MoveSignUp = new Intent(getApplicationContext(), RobotControl.class);
-        startActivity(MoveSignUp);
+        Intent MoveRobotControl = new Intent(getApplicationContext(), RobotControl.class);
+        startActivity(MoveRobotControl);
     }
 }
