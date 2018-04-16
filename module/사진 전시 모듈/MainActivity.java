@@ -3,7 +3,7 @@
  * @author : LimHyun (hyunzion@gmail.com)
  * @since : 2018 - 04 - 09
  * @brief : 사진 보여주기
- *          Test용 사진 3개를 Thread로 Animation해줌
+ *          Test용 사진 1개를 Thread로 Animation해줌
  * */
 
 package dva.imageview;
@@ -37,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public void startAnimation() {
          Resources res = getResources();
 
-         // Test 용 이미지 3개
+         // Test 용 이미지 1개
          drawableList.add(res.getDrawable(R.drawable.one));
-         drawableList.add(res.getDrawable(R.drawable.two));
-         drawableList.add(res.getDrawable(R.drawable.three));
 
          AnimThread thread = new AnimThread();
          thread.start();
@@ -49,14 +47,8 @@ public class MainActivity extends AppCompatActivity {
     // Thread
     class AnimThread extends Thread {
         public void run() {
-            int index = 0;
-            for (int i = 0; i < 100; i++) {
-                final Drawable drawable = drawableList.get(index);
-                index += 1;
-                // 사진의 갯수만큼 지정
-                if (index > 2) {
-                    index = 0;
-                }
+            while (true) {
+                final Drawable drawable = drawableList.get(0);
 
                 handler.post(new Runnable() {
                     @Override
