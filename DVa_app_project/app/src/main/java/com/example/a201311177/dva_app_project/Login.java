@@ -79,6 +79,7 @@ public class Login extends AppCompatActivity {
             //로봇 ip 저장
             result = robot_addr.get_ip();
             System.out.println("robot_ip is : "+result);
+
             String ID = editText_ID.getText().toString();
             if (ID.length() == 0)
                 Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();

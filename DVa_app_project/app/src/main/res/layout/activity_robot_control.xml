@@ -10,57 +10,52 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/forward_btn"
+        android:layout_height="221dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/forward_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButtonForward"
+        android:layout_width="102dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="22dp"
+        android:text="Forward"
         app:layout_constraintBottom_toTopOf="@+id/forward_left_btn"
-        app:layout_constraintStart_toEndOf="@+id/forward_left_btn"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/Forward" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/forward_left_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginStart="1dp"
-        android:onClick="onButtonLeft"
-        app:layout_constraintBottom_toTopOf="@+id/reverse_btn"
-        app:layout_constraintEnd_toStartOf="@+id/reverse_btn"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forward_btn"
-        app:srcCompat="@drawable/Forward_Left" />
+        android:layout_marginBottom="136dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="FORWARD LEFT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/forward_right_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onButtonRight"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="22dp"
+        android:text="FORWARD RIGHT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reverse_btn"
-        app:layout_constraintTop_toBottomOf="@+id/forward_btn"
-        app:srcCompat="@drawable/Forward_Right" />
+        app:layout_constraintTop_toBottomOf="@+id/forward_btn" />
 
-    <ImageButton
+    <Button
         android:id="@+id/reverse_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:onClick="onButtonReverse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/forward_right_btn"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="29dp"
+        android:text="REVERSE"
         app:layout_constraintStart_toEndOf="@+id/forward_left_btn"
-        app:layout_constraintTop_toBottomOf="@+id/forward_left_btn"
-        app:srcCompat="@drawable/Reverse" />
+        app:layout_constraintTop_toBottomOf="@+id/forward_right_btn" />
 
 </android.support.constraint.ConstraintLayout>
