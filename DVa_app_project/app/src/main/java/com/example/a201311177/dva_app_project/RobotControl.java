@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Handler;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.IOException;
-import android.view.MotionEvent;
+
 import android.view.View;
-import android.widget.Button;
 import android.graphics.Bitmap;
 
 public class RobotControl extends AppCompatActivity {
@@ -17,52 +17,44 @@ public class RobotControl extends AppCompatActivity {
     Handler handler = new Handler();
     String direction;
 
+    ImageButton forward_btn;
+    ImageButton forward_left_btn;
+    ImageButton forward_right_btn;
+    ImageButton reverse_btn;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_robot_control);//insert layout
-        imageView = (ImageView) findViewById((R.id.imageView));
-        Button forward_btn = (Button) findViewById(R.id.forward_btn);
-        Button forward_left_btn = (Button) findViewById(R.id.forward_left_btn);
-        Button forward_right_btn = (Button) findViewById(R.id.forward_right_btn);
-        Button reverse_btn = (Button) findViewById(R.id.reverse_btn);
-        startAnimation();
+        setContentView(R.layout.activity_robot_control);
+        forward_btn = (ImageButton) findViewById(R.id.forward_btn);
+        forward_right_btn = (ImageButton) findViewById(R.id.forward_right_btn);
+        forward_left_btn = (ImageButton) findViewById(R.id.forward_left_btn);
+        reverse_btn = (ImageButton) findViewById(R.id.reverse_btn);
+    }
 
-        forward_btn.setOnTouchListener(new Button.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "go forward";
-                System.out.println(direction);
-                return true;
-            }
-        });
+    public void onButtonForward(View v)
+    {
+        direction = "go forward";
+        System.out.println(direction);
+    }
 
-        forward_right_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                direction = "turn right";
-                System.out.println(direction);
-                return true;
-            }
-        });
+    public void onButtonRight(View v)
+    {
+        direction = "turn right";
+        System.out.println(direction);
+    }
 
-        forward_left_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "turn left";
-                System.out.println(direction);
-                return true;
-            }
-        });
+    public void onButtonLeft(View v)
+    {
+        direction = "turn left";
+        System.out.println(direction);
+    }
 
-        reverse_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "go back";
-                System.out.println(direction);
-                return true;
-            }
-        });
+    public void onButtonReverse(View v)
+    {
+        direction = "go back";
+        System.out.println(direction);
     }
 
     public void startAnimation() {
