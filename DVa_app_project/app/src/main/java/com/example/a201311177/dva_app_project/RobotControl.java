@@ -16,7 +16,8 @@ public class RobotControl extends AppCompatActivity {
     ImageView imageView;
     Handler handler = new Handler();
     String direction;
-
+    String robot_ip;
+    Recieve_robot_image image = null;
     ImageButton forward_btn;
     ImageButton forward_left_btn;
     ImageButton forward_right_btn;
@@ -27,10 +28,13 @@ public class RobotControl extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robot_control);
-        forward_btn = (ImageButton) findViewById(R.id.forward_btn);
-        forward_right_btn = (ImageButton) findViewById(R.id.forward_right_btn);
-        forward_left_btn = (ImageButton) findViewById(R.id.forward_left_btn);
-        reverse_btn = (ImageButton) findViewById(R.id.reverse_btn);
+        Intent RobotControl = new Intent();
+        robot_ip = RobotControl.getStringExtra("robot_ip");
+        //forward_btn = (ImageButton) findViewById(R.id.forward_btn);
+        //forward_right_btn = (ImageButton) findViewById(R.id.forward_right_btn);
+        //forward_left_btn = (ImageButton) findViewById(R.id.forward_left_btn);
+        //reverse_btn = (ImageButton) findViewById(R.id.reverse_btn);
+        startAnimation();
     }
 
     public void onButtonForward(View v)
@@ -70,10 +74,8 @@ public class RobotControl extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Intent RobotControl = new Intent();
-                        String robot_ip = RobotControl.getStringExtra("robot_ip");
-                        Recieve_robot_image image = new Recieve_robot_image(robot_ip,12224);
                         try {
+                            image = new Recieve_robot_image(robot_ip,5001);
                             image.saveFile();
                             Bitmap img = image.getBmp();
                             imageView.setImageBitmap(Bitmap.createScaledBitmap(img,imageView.getWidth(),imageView.getHeight(),false));

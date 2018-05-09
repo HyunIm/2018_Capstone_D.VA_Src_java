@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toTopOf="@+id/forward_left_btn"
         app:layout_constraintStart_toEndOf="@+id/forward_left_btn"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/Forward" />
+        app:srcCompat="@drawable/forward" />
 
     <ImageButton
         android:id="@+id/forward_left_btn"
@@ -39,7 +39,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forward_btn"
-        app:srcCompat="@drawable/Forward_Left" />
+        app:srcCompat="@drawable/forward_left" />
 
     <ImageButton
         android:id="@+id/forward_right_btn"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/reverse_btn"
         app:layout_constraintTop_toBottomOf="@+id/forward_btn"
-        app:srcCompat="@drawable/Forward_Right" />
+        app:srcCompat="@drawable/forward_right" />
 
     <ImageButton
         android:id="@+id/reverse_btn"
@@ -61,6 +61,6 @@
         app:layout_constraintEnd_toStartOf="@+id/forward_right_btn"
         app:layout_constraintStart_toEndOf="@+id/forward_left_btn"
         app:layout_constraintTop_toBottomOf="@+id/forward_left_btn"
-        app:srcCompat="@drawable/Reverse" />
+        app:srcCompat="@drawable/reverse" />
 
 </android.support.constraint.ConstraintLayout>
