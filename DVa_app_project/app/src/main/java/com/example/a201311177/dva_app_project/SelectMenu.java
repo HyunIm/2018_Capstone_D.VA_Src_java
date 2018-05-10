@@ -12,6 +12,11 @@ public class SelectMenu extends AppCompatActivity {
     }
     public void onButtonRobotCntrol(View v){
         Intent MoveRobotControl = new Intent(getApplicationContext(), RobotControl.class);
+        Intent previous = getIntent();
+        String result = previous.getStringExtra("robot_ip");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println(result);
+        MoveRobotControl.putExtra("robot_ip", result);
         startActivity(MoveRobotControl);
     }
 }

@@ -63,4 +63,16 @@
         app:layout_constraintTop_toBottomOf="@+id/forward_left_btn"
         app:srcCompat="@drawable/reverse" />
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:text="Stop"
+        android:onClick="onButtonStop"
+        app:layout_constraintStart_toEndOf="@+id/forward_left_btn"
+        app:layout_constraintTop_toTopOf="@+id/forward_left_btn" />
+
 </android.support.constraint.ConstraintLayout>
