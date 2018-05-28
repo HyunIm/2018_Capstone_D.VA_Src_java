@@ -15,7 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.io.IOException;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity
+    {
     EditText editText_ID;
     EditText editText_Password;
     String TrueSerialNumber = "NO";
