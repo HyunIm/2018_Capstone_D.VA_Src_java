@@ -23,5 +23,5 @@
         <activity android:name=".activities.RobotControlActivity"></activity>
         <activity android:name=".activities.ObjectRegistrationActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
