@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ObjectRegistrationActivity">
+    tools:context=".activities.ObjectRegistrationActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/RegisterView"
@@ -21,74 +22,59 @@
         android:id="@+id/PhotoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="59dp"
-        app:layout_constraintBottom_toTopOf="@+id/NameView"
+        android:layout_marginBottom="41dp"
+        android:layout_marginTop="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/NameView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/RegisterView"
         app:srcCompat="@android:color/transparent" />
 
     <TextView
         android:id="@+id/NameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="물건 이름"
-        app:layout_constraintBottom_toTopOf="@+id/Cancel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_name"
         app:layout_constraintEnd_toStartOf="@+id/editText_name"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhotoView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Input 물건 이름"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/SelectPhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NameView"
-        app:layout_constraintTop_toBottomOf="@+id/PhotoView" />
+        app:layout_constraintStart_toEndOf="@+id/NameView" />
 
     <Button
         android:id="@+id/Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginTop="37dp"
         android:text="확인"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPhoto"
-        app:layout_constraintEnd_toStartOf="@+id/Cancel"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:text="취소"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Register"
-        app:layout_constraintTop_toBottomOf="@+id/NameView" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
     <Button
         android:id="@+id/SelectPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="84dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
         android:text="사진 찾기"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Register"
-        app:layout_constraintTop_toBottomOf="@+id/Cancel" />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

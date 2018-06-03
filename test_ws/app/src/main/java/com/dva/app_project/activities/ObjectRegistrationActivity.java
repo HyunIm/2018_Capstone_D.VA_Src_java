@@ -10,7 +10,6 @@ import com.dva.app_project.R;
 
 public class ObjectRegistrationActivity extends AppCompatActivity {
     Button register;
-    Button cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +22,7 @@ public class ObjectRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveObjectList = new Intent(getApplicationContext(), ObjectListActivity.class);
-                startActivity(MoveObjectList);
-                finish();
-            }
-        });
-
-        //물건 등록을 취소하고 물건 리스트 화면으로 전환
-        cancel = findViewById(R.id.Cancel);
-        cancel.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent MoveObjectList = new Intent(getApplicationContext(), ObjectListActivity.class);
+                MoveObjectList.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveObjectList);
                 finish();
             }

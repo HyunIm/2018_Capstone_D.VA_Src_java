@@ -3,6 +3,7 @@ package com.dva.app_project.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import com.dva.app_project.R;
@@ -21,6 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveLogin = new Intent(getApplicationContext(), LoginActivity.class);
+                MoveLogin.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveLogin);
                 finish();
             }

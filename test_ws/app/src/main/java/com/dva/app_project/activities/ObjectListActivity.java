@@ -23,7 +23,6 @@ public class ObjectListActivity extends AppCompatActivity {
             public void onClick(View view){
                 Intent MoveObjectRegistration = new Intent(getApplicationContext(), ObjectRegistrationActivity.class);
                 startActivity(MoveObjectRegistration);
-                finish();
             }
         });
     }

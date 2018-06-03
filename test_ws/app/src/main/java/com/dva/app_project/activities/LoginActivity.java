@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveMenu = new Intent(getApplicationContext(), MenuActivity.class);
+                MoveMenu.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveMenu);
             }
         });
@@ -33,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveSingUp = new Intent(getApplicationContext(), SignUpActivity.class);
+                MoveSingUp.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveSingUp);
-                finish();
             }
         });
     }

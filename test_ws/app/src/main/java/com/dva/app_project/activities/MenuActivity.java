@@ -24,6 +24,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveObjectList = new Intent(getApplicationContext(), ObjectListActivity.class);
+                MoveObjectList.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveObjectList);
             }
         });
@@ -34,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveSearchObject = new Intent(getApplicationContext(), SearchObjectActivity.class);
+                MoveSearchObject.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveSearchObject);
             }
         });
@@ -44,6 +46,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent MoveRobotControl = new Intent(getApplicationContext(), RobotControlActivity.class);
+                MoveRobotControl.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveRobotControl);
             }
         });
