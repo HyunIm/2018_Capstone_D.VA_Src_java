@@ -31,72 +31,100 @@ public class RobotControl extends AppCompatActivity {
     Button stop;
     Socket socket = null;
     Send_string ss;
+    int i = 0;
+    Button b;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_robot_control);
-//        imageView = findViewById(R.id.imageView);
-        Intent previous = getIntent();
-        robot_ip = previous.getStringExtra("robot_ip");
-        forward_btn = findViewById(R.id.forward_btn);
-        forward_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "go_forward";
-                System.out.println(direction);
+
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_robot_control);
+            imageView = findViewById(R.id.imageView);
+            Intent previous = getIntent();
+            // robot_ip = previous.getStringExtra("robot_ip");
+            forward_btn = findViewById(R.id.forward_btn);
+
+//             Runnable repeatClickWhileButtonHeldRunnable=new Runnable() {
+//                 @Override
+//                 public void run() {
+//                     forward_btn.performClick();
+//                 }
+//             };
+            forward_btn.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        direction = "go_forward";
+                        forward_btn.performClick();
+                        System.out.println(direction);
+                        ss = new Send_string(robot_ip, 12225, direction);
+                        ss.start();
+                    }
+//                else if(event.getAction()==MotionEvent.ACTION_MOVE)
+//                {
+//                    direction = "go_forward";
+//                    System.out.println(direction);
+//                    System.out.println(i++);
+//
+//                }
+                    else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        direction = "go_forward";
+                        System.out.println(direction);
+                        //   ss = new Send_string(robot_ip, 12225, direction);
+                        //   ss.start();
+                    }//여기부분 고치기!!!!!2018.5.29
+                    return false;
+                }
+            });
+            turn_left_btn = findViewById(R.id.turn_left_btn);
+            turn_left_btn.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    direction = "turn__left";
+                    System.out.println(direction);
+                      ss = new Send_string(robot_ip, 12225, direction);
+                      ss.start();
+                    return false;
+                }
+            });
+            turn_right_btn = findViewById(R.id.turn_right_btn);
+            turn_right_btn.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    direction = "turn_right";
+                    System.out.println(direction);
+                       ss = new Send_string(robot_ip, 12225, direction);
+                      ss.start();
+                    return false;
+                }
+            });
+            reverse_btn = findViewById(R.id.reverse_btn);
+            reverse_btn.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    direction = "move__back";
+                    System.out.println(direction);
                 ss = new Send_string(robot_ip, 12225, direction);
                 ss.start();
-                return false;
-            }
-        });
-        turn_left_btn = findViewById(R.id.turn_left_btn);
-        turn_left_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "turn__left";
-                System.out.println(direction);
-                ss = new Send_string(robot_ip, 12225, direction);
-                ss.start();
-                return false;
-            }
-        });
-        turn_right_btn = findViewById(R.id.turn_right_btn);
-        turn_right_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "turn_right";
-                System.out.println(direction);
-                ss = new Send_string(robot_ip, 12225, direction);
-                ss.start();
-                return false;
-            }
-        });
-        reverse_btn = findViewById(R.id.reverse_btn);
-        reverse_btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "move__back";
-                System.out.println(direction);
-                ss = new Send_string(robot_ip, 12225, direction);
-                ss.start();
-                return false;
-            }
-        });
-        stop = findViewById(R.id.stop);
-        stop.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "donot_move";
-                System.out.println(direction);
-                ss = new Send_string(robot_ip, 12225, direction);
-                ss.start();
-                return false;
-            }
-        });
-        //image = new Recv_img(robot_ip, 12224, imageView);
-        //startAnimation();
+                    return false;
+                }
+            });
+            stop = findViewById(R.id.stop);
+            stop.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    direction = "donot_move";
+                    System.out.println(direction);
+               /* ss = new Send_string(robot_ip, 12225, direction);
+                ss.start();*/
+                    return false;
+                }
+            });
+            //image = new Recv_img(robot_ip, 12224, imageView);
+            //startAnimation();
 //        Recv_img image = new Recv_img(robot_ip, 12224, imageView);
 //        while(true) {
 //            image.start();
@@ -111,46 +139,48 @@ public class RobotControl extends AppCompatActivity {
 //                e.printStackTrace();
 //            }
 //        }
-    }
+        }
 
-    public void onButtonForward(View v)
-    {
-        direction = "go_forward";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonRight(View v)
-    {
-        direction = "turn_right";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonLeft(View v)
-    {
-        direction = "turn__left";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonReverse(View v)
-    {
-        direction = "move__back";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonStop(View v){
-        direction = "donot_move";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
+//    public void onButtonForward(View v,MotionEvent m)
+//    {
+//
+//
+//        direction = "go_forward";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonRight(View v)
+//    {
+//        direction = "turn_right";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonLeft(View v)
+//    {
+//        direction = "turn__left";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonReverse(View v)
+//    {
+//        direction = "move__back";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonStop(View v){
+//        direction = "donot_move";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
 
 //    public void startAnimation() {
 //
@@ -158,7 +188,7 @@ public class RobotControl extends AppCompatActivity {
 //        thread.start();
 //    }
 
-    // Thread
+        // Thread
 //    class AnimThread extends Thread {
 //        public void run() {
 //            while (true) {
@@ -192,4 +222,5 @@ public class RobotControl extends AppCompatActivity {
 //            }
 //        }
 //    }
+   // }
 }
