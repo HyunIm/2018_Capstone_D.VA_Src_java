@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Thing_List_Management extends AppCompatActivity {
     ArrayAdapter adapter;
     Cursor cursor;//객체가 없다.
     DatabaseHelper hp;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class Thing_List_Management extends AppCompatActivity {
          remove_btn=(Button)findViewById(R.id.remove);
          itemList=(ListView)findViewById(R.id.itemlist);
          hp = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);//객체생성
+
          //nameresult에서
         //여기 객체 다시보기 여기부분 다시보기
 //        DBAdapter db=new DBAdapter(this,cursor);
@@ -52,11 +55,12 @@ public class Thing_List_Management extends AppCompatActivity {
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+                Toast.makeText(getApplicationContext(), String.valueOf(itemList.getCheckedItemPositions()), Toast.LENGTH_LONG).show();
                 // get TextView's Text.
-                cursor.moveToPosition(position);
-                String index = cursor.getString(cursor.getColumnIndex("_id"));
-//                String strText = (String) parent.getItemAtPosition(position) ;
-                int ㅣ_id = Integer.parseInt(index);
+//                cursor.moveToPosition(position);
+//                String index = cursor.getString(cursor.getColumnIndex("_id"));
+////                String strText = (String) parent.getItemAtPosition(position) ;
+//                int ㅣ_id = Integer.parseInt(index);
            }
             });
         //여기까지 문제
