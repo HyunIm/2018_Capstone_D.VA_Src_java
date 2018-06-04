@@ -1,4 +1,4 @@
-package com.example.a201311177.dva_app_project;
+package com.dva.app_project;
 
 import org.junit.Test;
 
