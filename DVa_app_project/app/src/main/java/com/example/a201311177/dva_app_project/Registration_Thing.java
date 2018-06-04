@@ -122,5 +122,7 @@ public class Registration_Thing extends AppCompatActivity {
             //System.out.println(dbHelper.getResult());
         }
 
+        Intent checkTest = new Intent(getApplicationContext(), Thing_List_Management.class);
+        startActivity(checkTest);
     }
 }
