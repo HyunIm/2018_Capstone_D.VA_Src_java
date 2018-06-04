@@ -39,10 +39,14 @@ public class SignUp extends AppCompatActivity {
         String robot_ip = intent.getStringExtra("robot_ip");
         // editText로 입력받고, 입력값이 0이라면 입력하라고 요구
         String ID = editText_ID.getText().toString();
-        if (ID.length() == 0)
-            Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();
         String Password = editText_Password.getText().toString();
-        if (Password.length() == 0)
+        if (ID.length() ==0&&Password.length()!=0)
+            Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();
+        else if(ID.length()==0&&Password.length()==0)
+        {
+            Toast.makeText(getApplicationContext(), "Input Your ID and Password!", Toast.LENGTH_LONG). show();
+        }
+        else
             Toast.makeText(getApplicationContext(), "Input Your Password", Toast.LENGTH_LONG). show();
         String SerialNumber = editText_SerialNumber.getText().toString();
         if (SerialNumber.length() == 0)

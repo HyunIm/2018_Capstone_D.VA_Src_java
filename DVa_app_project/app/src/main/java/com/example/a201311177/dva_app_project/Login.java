@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.io.IOException;
@@ -21,14 +22,25 @@ public class Login extends AppCompatActivity
     EditText editText_Password;
     String TrueSerialNumber = "NO";
     String result;
+    Button login_btn;
+    Button signup_btn;
+    //테스트용
+    Button Test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editText_ID = (EditText) findViewById(R.id.editText_ID);
         editText_Password = (EditText) findViewById(R.id.editText_Password);
+        login_btn=findViewById(R.id.login);
+        signup_btn=findViewById(R.id.sign_up);
+        Test=findViewById(R.id.Test);
     }
-
+    public void onButtonTest(View v)
+    {
+        Intent MoveTest = new Intent(getApplicationContext(), SelectMenu.class);
+        startActivity(MoveTest);
+    }
     /*
     * @title : public void onButtonSignUp(View v)
     * @brief : SignUp 버튼을 누를 시 SignUp class로 이동
@@ -68,6 +80,16 @@ public class Login extends AppCompatActivity
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
         broadcast.start();
         try {
+            String ID = editText_ID.getText().toString();
+            String Password = editText_Password.getText().toString();
+            if (ID.length() ==0&&Password.length()!=0)
+                Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();
+            else if(ID.length()==0&&Password.length()==0)
+            {
+                Toast.makeText(getApplicationContext(), "Input Your ID and Password!", Toast.LENGTH_LONG). show();
+            }
+            else
+                Toast.makeText(getApplicationContext(), "Input Your Password", Toast.LENGTH_LONG). show();
             //로봇 ip 받아올 객체 생성
             Recieve_robot_ip robot_addr = new Recieve_robot_ip();
 
@@ -75,17 +97,13 @@ public class Login extends AppCompatActivity
             robot_addr.start();
             System.out.println("1");
             //쓰래드가 끝날 때까지 대기
+            //쓰레드 조건 주어야한다~!~! 너무 오래 대기탐..
             robot_addr.join();
             System.out.println("2");
             //로봇 ip 저장
             result = robot_addr.get_ip();
             System.out.println("robot_ip is : "+result);
-            String ID = editText_ID.getText().toString();
-            if (ID.length() == 0)
-                Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();
-            String Password = editText_Password.getText().toString();
-            if (Password.length() == 0)
-                Toast.makeText(getApplicationContext(), "Input Your Password", Toast.LENGTH_LONG). show();
+
             Send_id_pass id_pass = new Send_id_pass(result, ID + ":::" + Password );
             id_pass.start();
             id_pass.join();

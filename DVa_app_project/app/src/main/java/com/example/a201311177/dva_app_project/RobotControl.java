@@ -37,17 +37,29 @@ public class RobotControl extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robot_control);
-//        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
         Intent previous = getIntent();
         robot_ip = previous.getStringExtra("robot_ip");
         forward_btn = findViewById(R.id.forward_btn);
-        forward_btn.setOnTouchListener(new View.OnTouchListener() {
+        forward_btn.setOnTouchListener(new View.OnTouchListener()
+        {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                direction = "go_forward";
-                System.out.println(direction);
-                ss = new Send_string(robot_ip, 12225, direction);
-                ss.start();
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                {
+                    direction = "go_forward";
+                    System.out.println(direction);
+                    ss = new Send_string(robot_ip, 12225, direction);
+                    ss.start();
+                }
+                if(event.getAction()== MotionEvent.ACTION_UP)
+                {
+                    direction = "go_forward";
+                    System.out.println(direction);
+                    ss = new Send_string(robot_ip, 12225, direction);
+                    ss.start();
+                }//여기부분 고치기!!!!!2018.5.29
                 return false;
             }
         });
@@ -62,7 +74,7 @@ public class RobotControl extends AppCompatActivity {
                 return false;
             }
         });
-        turn_right_btn = findViewById(R.id.turn_right_btn);
+       turn_right_btn = findViewById(R.id.turn_right_btn);
         turn_right_btn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -113,44 +125,44 @@ public class RobotControl extends AppCompatActivity {
 //        }
     }
 
-    public void onButtonForward(View v)
-    {
-        direction = "go_forward";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonRight(View v)
-    {
-        direction = "turn_right";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonLeft(View v)
-    {
-        direction = "turn__left";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonReverse(View v)
-    {
-        direction = "move__back";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
-
-    public void onButtonStop(View v){
-        direction = "donot_move";
-        System.out.println(direction);
-        ss = new Send_string(robot_ip, 12225, direction);
-        ss.start();
-    }
+//    public void onButtonForward(View v,MotionEvent m)
+//    {
+//        direction = "go_forward";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonRight(View v)
+//    {
+//        direction = "turn_right";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonLeft(View v)
+//    {
+//        direction = "turn__left";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonReverse(View v)
+//    {
+//        direction = "move__back";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
+//
+//    public void onButtonStop(View v){
+//        direction = "donot_move";
+//        System.out.println(direction);
+//        ss = new Send_string(robot_ip, 12225, direction);
+//        ss.start();
+//    }
 
 //    public void startAnimation() {
 //

@@ -3,6 +3,7 @@ package com.example.a201311177.dva_app_project;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -28,7 +29,8 @@ public class Registration_Thing extends AppCompatActivity {
     private String imagePath;//실제 사진 파일 경로
     //String mImageCaptureName;//이미지 이름
     EditText _Text;
-
+    Cursor cursor;
+    int column_index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class Registration_Thing extends AppCompatActivity {
                 try {
                     //Uri에서 이미지 이름을 얻어온다.
                     imagePath = getImageNameToUri(data.getData());
-
+                    System.out.println("사진경로:"+imagePath);
                     //이미지 데이터를 비트맵으로 받아온다.
                     Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     image = (ImageView)findViewById(R.id.imageView1);
@@ -90,29 +92,35 @@ public class Registration_Thing extends AppCompatActivity {
         }
     }
 
-
     public String getImageNameToUri(Uri data)
     {
         String[] proj = { MediaStore.Images.Media.DATA };
         //사진 최신순으로 정렬해서 가져오기
-        Cursor cursor = managedQuery(data, proj, null, null, null);
+        cursor = managedQuery(data, proj, null, null, null);
         //기본앨범 이미지 안될경우 밑에 코드 한줄 실행해보기
-        //startManagingCursor(cursor);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
+        startManagingCursor(cursor);
+        column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-
         String imgPath = cursor.getString(column_index);
-        String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
-
-        return imgName;
+        //String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
+        return imgPath;
     }
-    public void onButtonCheck(View v)
-    {
+
+    public void onButtonCheck(View v) {
+        //Db에 데이터 넣은 뒤 완료되었습니다라는 메시지 창을 띄우고 초기화 또는 앱을 나간다.
         //일단 여기에 객체 생성
         final DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);
-        String photo_path=imagePath;
-        String name=_Text.getText().toString();
-        dbHelper.insert(photo_path,name);
+        String photo_path = imagePath;
+        String name = _Text.getText().toString();
+        if (name.length() == 0) {
+            Toast.makeText(getApplicationContext(), "물건 이름을 입력해주세요.", Toast.LENGTH_LONG).show();
+        }
+        else {
+
+            dbHelper.insert(photo_path, name);
+            Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_LONG).show();
+            //System.out.println(dbHelper.getResult());
+        }
+
     }
 }
