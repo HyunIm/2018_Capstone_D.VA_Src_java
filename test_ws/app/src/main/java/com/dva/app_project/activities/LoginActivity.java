@@ -1,51 +1,139 @@
 package com.dva.app_project.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dva.app_project.R;
+import com.dva.app_project.broadcast_and_get_robot_ip.FindBroadcastIp;
+import com.dva.app_project.broadcast_and_get_robot_ip.RecieveRobotIp;
+import com.dva.app_project.broadcast_and_get_robot_ip.SendBroadcast;
+import com.dva.app_project.internet.SendRecvString;
 import com.dva.app_project.internet.SendString;
 
 public class LoginActivity extends AppCompatActivity {
     Button login;
     Button signup;
+    EditText edit_id;
+    EditText edit_pass;
+    String broadcastip;
+    String robotip = "fail";
+    int port;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        edit_id = findViewById(R.id.editText_ID);
+        edit_pass = findViewById(R.id.editText_Password);
 
-        //로봇 ip알아 내는 코드 집어 넣기
+        //로봇 ip알아 내는 코드
+        //브로드캐스트 ip알아 내기
+        FindBroadcastIp fbi = new FindBroadcastIp(this);
+        broadcastip = fbi.checkAvailableConnection();
+        if (broadcastip.equals("Wifi not connected!")) {
+            print_toast("Please connect wifi!!");
+            finish();
+        }
+        //포트 구하고 로봇에게 브로드캐스트 하기
+        port = getResources().getInteger(R.integer.broadcastport);
+        Runnable r = new SendBroadcast(broadcastip, port);
+        Thread t = new Thread(r);
+        t.start();
+        //로봇 ip 받기
+        port = getResources().getInteger(R.integer.recvrobotipport);
+        RecieveRobotIp rri = new RecieveRobotIp(port);
+        Runnable r2 = rri;
+        Thread t2 = new Thread(r2);
+        t2.start();
+        try {
+            t2.join(5000);
+            //로봇과 연결 실패시 종료
+            robotip = rri.get_ip();
+            if (robotip.equals("fail")) {
+                print_toast("로봇을 와이파이에 연결해 주세요!");
+                finish();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        //로그인 후 메뉴 화면으로 전환
+        //클래스간 ip 공유
+        SharedPreferences perf = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = perf.edit();
+        editor.putString("robotip", robotip);
+        editor.commit();
+
+        //로그인 버튼 누를 때
         login = findViewById(R.id.Login);
         login.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Login.py 가 사용하는 ip와 port로 id와 password 보내는 코드 집어 넣기
-                Intent MoveMenu = new Intent(getApplicationContext(), MenuActivity.class);
-                MoveMenu.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(MoveMenu);
+
+                //Login.py 가 사용하는 ip와 port로 id와 password 보내는 코드
+                //id를 입력했는지 확인
+                String id = edit_id.getText().toString();
+                if (id.length() == 0) {
+                    print_toast("ID를 입력하세요!");
+                } else {
+                    //비밀번호 입력했는지 확인
+                    String pass = edit_pass.getText().toString();
+                    if (pass.length() == 0) {
+                        print_toast("PassWord를 입력하세요!");
+                    } else {
+                        //로봇의 로그인 모듈 실행
+                        port = getResources().getInteger(R.integer.stringclassifyport);
+                        Runnable r = new SendString(robotip, port, "Login.py");
+                        Thread t = new Thread(r);
+                        t.start();
+
+                        //로그인 정보 전달
+                        port = getResources().getInteger(R.integer.logininfoport);
+                        SendRecvString srs = new SendRecvString(robotip, port, id+":::"+pass+":::");
+                        Runnable r1 = srs;
+                        Thread t1 = new Thread(r1);
+                        t1.start();
+                        try {
+                            t1.join();
+                            String logininfo = srs.getResult();
+                            if(logininfo.equals("yes")){
+                                print_toast("Login!");
+                                Intent MoveMenu = new Intent(getApplicationContext(), MenuActivity.class);
+                                MoveMenu.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                startActivity(MoveMenu);
+                            }
+                            else{
+                                print_toast("잘못된 아이디, 패스워드 입니다.");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
             }
         });
 
-        //회원 가입 화면으로 전환
+        //회원 가입 버튼 누를 때
         signup = findViewById(R.id.SignUp);
         signup.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //로봇에게 실행 할 프로그램 이름 전달(회원 가입 모듈 열기)
-                Runnable r = new SendString("192.168.0.6", 5001, "SignUp.py");//로봇 ip 알아내면 해당 ip 집어 넣기
-                Thread t = new Thread(r);
-                t.start();
-
                 Intent MoveSingUp = new Intent(getApplicationContext(), SignUpActivity.class);
                 MoveSingUp.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(MoveSingUp);
+
             }
         });
+    }
+
+    private void print_toast(String toastmsg) {
+        //로봇과 연결 실패
+        Toast.makeText(getApplicationContext(), toastmsg, Toast.LENGTH_LONG).show();
     }
 }

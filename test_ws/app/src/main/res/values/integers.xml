@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="broadcastport">5000</integer>
+    <integer name="recvrobotipport">5001</integer>
+    <integer name="stringclassifyport">5002</integer>
+    <integer name="logininfoport">5003</integer>
+    <integer name="signupinfoport">5004</integer>
+</resources>
