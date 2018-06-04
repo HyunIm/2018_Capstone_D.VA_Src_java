@@ -61,23 +61,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    //이부분도 필요없으면 없앨 수도
-    public String getResult() {
-        SQLiteDatabase db = getReadableDatabase();
-        String result = "";
-        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
-        cursor.getString(2);
-        while (cursor.moveToNext()) {
-            result += cursor.getString(1)
-                    + " : "
-                    + cursor.getString(2)
-                    + " | "
-                    + cursor.getString(3)
-                    + "\n";
-        }
-
-        return result;
-    }
+//    //이부분도 필요없으면 없앨 수도
+//    public String getResult() {
+//        SQLiteDatabase db = getReadableDatabase();
+//        String result = "";
+//        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
+//        cursor.getString(2);
+//        while (cursor.moveToNext()) {
+//            result += cursor.getString(1)
+//                    + " : "
+//                    + cursor.getString(2)
+//                    + " | "
+//                    + cursor.getString(3)
+//                    + "\n";
+//        }
+//
+//        return result;
+//    }
 
     public String []nameResult()
     {
