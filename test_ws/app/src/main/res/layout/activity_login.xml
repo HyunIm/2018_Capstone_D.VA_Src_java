@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".activities.LoginActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/IDView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="6dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/PassView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -41,7 +41,7 @@
         android:hint="Input ID"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/IDView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -55,29 +55,27 @@
         android:hint="Input Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/PassView"
         app:layout_constraintTop_toBottomOf="@+id/editText_ID" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="39dp"
         android:layout_marginRight="39dp"
         android:layout_marginTop="44dp"
-        android:onClick="onButtonLogin"
         android:text="Login"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/SignUp"
         app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
-        android:onClick="onButtonSignUp"
         android:text="Sign Up"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Login"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

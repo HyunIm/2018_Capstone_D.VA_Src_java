@@ -3,16 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activities.MenuActivity">
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:onClick="onButtonRobotCntrol"
+        android:id="@+id/RobotControl"
+        android:layout_width="125dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="65dp"
         android:text="로봇 조종"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SearchObject" />
+
+    <Button
+        android:id="@+id/SearchObject"
+        android:layout_width="125dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="55dp"
+        android:text="물건 찾기"
+        app:layout_constraintBottom_toTopOf="@+id/RobotControl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ObjectList" />
+
+    <Button
+        android:id="@+id/ObjectList"
+        android:layout_width="125dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        android:text="물건 리스트"
+        app:layout_constraintBottom_toTopOf="@+id/SearchObject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MenuView" />
+
+    <TextView
+        android:id="@+id/MenuView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="37dp"
+        android:text="메뉴 화면"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        app:layout_constraintBottom_toTopOf="@+id/ObjectList"
+        app:layout_constraintEnd_toEndOf="@+id/ObjectList"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

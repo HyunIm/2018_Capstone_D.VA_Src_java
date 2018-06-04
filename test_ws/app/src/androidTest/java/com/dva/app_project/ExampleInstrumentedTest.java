@@ -1,4 +1,4 @@
-package com.example.a201311177.dva_app_project;
+package com.dva.app_project;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.a201311177.dva_app_project", appContext.getPackageName());
+        assertEquals("com.dva.app_project", appContext.getPackageName());
     }
 }
