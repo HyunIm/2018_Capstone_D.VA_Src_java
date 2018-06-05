@@ -6,54 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".SelectMenu">
 
-    <Button
-        android:id="@+id/robotControl"
-        android:layout_width="125dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="65dp"
-        android:onClick="onButtonRobotCntrol"
-        android:text="로봇 조종"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FindThing" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/FindThing"
-        android:layout_width="125dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="55dp"
-        android:onClick="onButtonFindThing"
-        android:text="물건 찾기"
-        app:layout_constraintBottom_toTopOf="@+id/robotControl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ThingList" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryDark">
 
-    <Button
-        android:id="@+id/ThingList"
-        android:layout_width="125dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="56dp"
-        android:onClick="onButtonThingList"
-        android:text="물건 리스트"
-        app:layout_constraintBottom_toTopOf="@+id/FindThing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="메인 메뉴"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="43dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginTop="37dp"
-        android:text="메뉴 화면"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        app:layout_constraintBottom_toTopOf="@+id/ThingList"
-        app:layout_constraintEnd_toEndOf="@+id/ThingList"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="70dp">
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onButtonThingList"
+                android:text="물건 리스트"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onButtonFindThing"
+                android:text="물건 찾기"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onButtonRobotControl"
+                android:text="로봇 조종"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
