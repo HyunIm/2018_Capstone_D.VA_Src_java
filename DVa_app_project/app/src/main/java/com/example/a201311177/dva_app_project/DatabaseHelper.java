@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //onCreate() 함수는 생성자에서 넘겨받은 이름과 버전의 데이터베이스가 존재하지 않을때 한번 호출. 그렇기 때문에 새로운 데이터베이스를 생성할때 사용
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL("CREATE TABLE PICTURELIST (_id INTEGER PRIMARY KEY AUTOINCREMENT,Photo_path TEXT, name TEXT);");
+            db.execSQL("CREATE TABLE PICTURELIST (Photo_path TEXT, name TEXT PRIMARY KEY);");
         } catch (Exception ex) {
             Log.e(TAG, "Exception in CREATE_SQL", ex);
         }
@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //행 추가
         try {
             //만약 같은 사진을 중복으로 등록한다면??????
-            db.execSQL("INSERT INTO PICTURELIST VALUES(null,'" + Photo_path + "', '" + name + "');");
+            db.execSQL("INSERT INTO PICTURELIST VALUES('" + Photo_path + "', '" + name + "');");
             Log.e(TAG, "success in insert_SQL");
             db.close();
         } catch (Exception ex) {
@@ -55,50 +55,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void delete(String name) {
+    //이부분 수정좀 하기!!!!
+    public void delete() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM PICTURELIST WHERE name'" + name + "';");
+        db.execSQL("DELETE FROM PICTURELIST;");//" WHERE _id'" + _id + "';");//primartkey 값으로 지운다.
+
         db.close();
     }
 
-//    //이부분도 필요없으면 없앨 수도
-//    public String getResult() {
-//        SQLiteDatabase db = getReadableDatabase();
-//        String result = "";
-//        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
-//        cursor.getString(2);
-//        while (cursor.moveToNext()) {
-//            result += cursor.getString(1)
-//                    + " : "
-//                    + cursor.getString(2)
-//                    + " | "
-//                    + cursor.getString(3)
-//                    + "\n";
-//        }
-//
-//        return result;
-//    }
-
-    public String []nameResult()
-    {
+    //이부분도 필요없으면 없앨 수도
+    public String[] photopathResult() {
+        int j = 0;
         SQLiteDatabase db = getReadableDatabase();
 
-        int i=0;
         Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
-        cursor.moveToFirst();
-        cursor.getString(2);
-        String [] result = new String[cursor.getCount()];
-        System.out.println(cursor.getCount());
-        do
-        {
-            result[i] +=  cursor.getString(0)
-                + " : "
-                + cursor.getString(2)
-                + "\n";
-            i++;
-            if(i>cursor.getCount())
-                break;
-        }while (cursor.moveToNext());
+        String[] result = new String[cursor.getCount()];
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            cursor.getString(1);
+            do {
+                result[j] += cursor.getString(0);//photopath
+                j++;
+                if (j > cursor.getCount())
+                    break;
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+    public String[] nameResult() {
+        int j = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST ", null);
+        String[] result = new String[cursor.getCount()];
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            cursor.getString(1);
+            do {
+                result[j] +=cursor.getString(1);//name
+                result[j]
+                j++;
+                if (j > cursor.getCount())
+                    break;
+
+            } while (cursor.moveToNext());
+        }
         return result;
     }
 }
+//    public String []ALlResult()
+//    {
+//        SQLiteDatabase db = getReadableDatabase();
+//
+//        int i=0;
+//        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
+//        cursor.moveToFirst();
+//        cursor.getString(2);
+//        String [] result = new String[cursor.getCount()];
+//        System.out.println(cursor.getCount());
+//        do
+//        {
+//            result[i] +=  cursor.getString(0)
+//                + " : "
+//                + cursor.getString(1)
+//                + "\n";
+//            i++;
+//            if(i>cursor.getCount())
+//                break;
+//        }while (cursor.moveToNext());
+//        return result;
+//    }
+//    }

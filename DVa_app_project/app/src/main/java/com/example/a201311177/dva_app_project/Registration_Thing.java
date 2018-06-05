@@ -105,10 +105,12 @@ public class Registration_Thing extends AppCompatActivity {
         //String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
         return imgPath;
     }
-
+    //확인 버튼 누른후 취소버튼 눌러야 리스트로 돌아감
+    //확인 버튼에서 이름 같으면 메시지 출력하는 기능 넣어야함!!
     public void onButtonCheck(View v) {
         //Db에 데이터 넣은 뒤 완료되었습니다라는 메시지 창을 띄우고 초기화 또는 앱을 나간다.
         //일단 여기에 객체 생성
+        Thing_List_Management t= new Thing_List_Management();
         final DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);
         String photo_path = imagePath;
         String name = _Text.getText().toString();
@@ -119,10 +121,14 @@ public class Registration_Thing extends AppCompatActivity {
 
             dbHelper.insert(photo_path, name);
             Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_LONG).show();
-            //System.out.println(dbHelper.getResult());
         }
 
-        Intent checkTest = new Intent(getApplicationContext(), Thing_List_Management.class);
-        startActivity(checkTest);
+    }
+    //취소버튼 누르면 화면 리스트 잘 나옴!!!
+    public void onButtonCancel(View v) {
+        finish();
+        Intent in=new Intent(getApplicationContext(),Thing_List_Management.class);
+        startActivity(in);
+//
     }
 }
