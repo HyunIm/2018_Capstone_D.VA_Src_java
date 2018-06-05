@@ -11,17 +11,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.io.IOException;
 
-public class Login extends AppCompatActivity
-    {
+public class Login extends AppCompatActivity {
     EditText editText_ID;
     EditText editText_Password;
     String TrueSerialNumber = "NO";
     String result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +29,7 @@ public class Login extends AppCompatActivity
         editText_Password = (EditText) findViewById(R.id.editText_Password);
     }
 
-    public void onButtonTest(View v)
-    {
+    public void onButtonTest(View v) {
         Intent MoveTest = new Intent(getApplicationContext(), SelectMenu.class);
         startActivity(MoveTest);
     }
@@ -40,8 +38,7 @@ public class Login extends AppCompatActivity
     * @title : public void onButtonSignUp(View v)
     * @brief : SignUp 버튼을 누를 시 SignUp class로 이동
     * */
-    public void onButtonSignUp(View v)
-    {
+    public void onButtonSignUp(View v) {
         Find_broadcast_ip broad_ip = new Find_broadcast_ip(this);
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
         broadcast.start();
@@ -71,19 +68,17 @@ public class Login extends AppCompatActivity
         }
     }
 
-    public void onButtonLogin(View v){
+    public void onButtonLogin(View v) {
         Find_broadcast_ip broad_ip = new Find_broadcast_ip(this);
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
         broadcast.start();
         try {
             String ID = editText_ID.getText().toString();
             String Password = editText_Password.getText().toString();
-            if (ID.length() ==0&&Password.length()!=0)
+            if (ID.length() == 0 && Password.length() != 0)
                 Toast.makeText(getApplicationContext(), "Input Your ID", Toast.LENGTH_LONG). show();
-            else if(ID.length()==0&&Password.length()==0)
-            {
+            else if (ID.length() == 0 && Password.length() == 0)
                 Toast.makeText(getApplicationContext(), "Input Your ID and Password!", Toast.LENGTH_LONG). show();
-            }
             else
                 Toast.makeText(getApplicationContext(), "Input Your Password", Toast.LENGTH_LONG). show();
             //로봇 ip 받아올 객체 생성
@@ -98,7 +93,7 @@ public class Login extends AppCompatActivity
             System.out.println("2");
             //로봇 ip 저장
             result = robot_addr.get_ip();
-            System.out.println("robot_ip is : "+result);
+            System.out.println("robot_ip is : "+ result);
 
             Send_id_pass id_pass = new Send_id_pass(result, ID + ":::" + Password );
             id_pass.start();
@@ -112,14 +107,13 @@ public class Login extends AppCompatActivity
                 MoveSignUp.putExtra("robot_ip", result);
                 startActivity(MoveSignUp);
             }
-            else{
+            else
                 Toast.makeText(getApplicationContext(), "Check your ID or Password!", Toast.LENGTH_LONG). show();
-            }
         }
-        catch(IOException e) {
+        catch (IOException e) {
             System.out.println("fail_recieve_robot_ip");
         }
-        catch (InterruptedException e){
+        catch (InterruptedException e) {
             System.out.println("join problem");
         }
     }
