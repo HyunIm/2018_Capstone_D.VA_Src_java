@@ -93,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.getString(1);
             do {
                 result[j] +=cursor.getString(1);//name
-                result[j]
+
                 j++;
                 if (j > cursor.getCount())
                     break;
