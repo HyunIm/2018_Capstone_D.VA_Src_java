@@ -22,25 +22,20 @@ public class Login extends AppCompatActivity
     EditText editText_Password;
     String TrueSerialNumber = "NO";
     String result;
-    Button login_btn;
-    Button signup_btn;
-    //테스트용
-    Button Test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editText_ID = (EditText) findViewById(R.id.editText_ID);
         editText_Password = (EditText) findViewById(R.id.editText_Password);
-        login_btn=findViewById(R.id.login);
-        signup_btn=findViewById(R.id.sign_up);
-        Test=findViewById(R.id.Test);
     }
+
     public void onButtonTest(View v)
     {
         Intent MoveTest = new Intent(getApplicationContext(), SelectMenu.class);
         startActivity(MoveTest);
     }
+
     /*
     * @title : public void onButtonSignUp(View v)
     * @brief : SignUp 버튼을 누를 시 SignUp class로 이동
@@ -75,6 +70,7 @@ public class Login extends AppCompatActivity
             System.out.println("join problem");
         }
     }
+
     public void onButtonLogin(View v){
         Find_broadcast_ip broad_ip = new Find_broadcast_ip(this);
         Send_broadcast broadcast = new Send_broadcast(broad_ip.checkAvailableConnection());
