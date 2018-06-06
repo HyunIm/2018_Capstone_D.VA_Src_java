@@ -5,4 +5,7 @@
     <integer name="stringclassifyport">5002</integer>
     <integer name="logininfoport">5003</integer>
     <integer name="signupinfoport">5004</integer>
+    <integer name="imagegetport">5005</integer>
+    <integer name="directionport">5006</integer>
+    <integer name="closeport">5007</integer>
 </resources>

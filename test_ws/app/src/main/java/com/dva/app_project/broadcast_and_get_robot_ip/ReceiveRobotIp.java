@@ -10,14 +10,14 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class RecieveRobotIp implements Runnable {
+public class ReceiveRobotIp implements Runnable {
     private ServerSocket server;
     private Socket client = null;
     private InetSocketAddress ip;
     private String result;
     int port;
 
-    public RecieveRobotIp(int port){
+    public ReceiveRobotIp(int port){
         this.port = port;
     }
 

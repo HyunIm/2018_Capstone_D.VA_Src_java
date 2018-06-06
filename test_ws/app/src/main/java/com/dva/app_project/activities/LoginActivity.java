@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.dva.app_project.R;
 import com.dva.app_project.broadcast_and_get_robot_ip.FindBroadcastIp;
-import com.dva.app_project.broadcast_and_get_robot_ip.RecieveRobotIp;
+import com.dva.app_project.broadcast_and_get_robot_ip.ReceiveRobotIp;
 import com.dva.app_project.broadcast_and_get_robot_ip.SendBroadcast;
 import com.dva.app_project.internet.SendRecvString;
 import com.dva.app_project.internet.SendString;
@@ -42,17 +42,17 @@ public class LoginActivity extends AppCompatActivity {
         }
         //포트 구하고 로봇에게 브로드캐스트 하기
         port = getResources().getInteger(R.integer.broadcastport);
-        Runnable r = new SendBroadcast(broadcastip, port);
-        Thread t = new Thread(r);
-        t.start();
+        Runnable r_sb = new SendBroadcast(broadcastip, port);
+        Thread t_sb = new Thread(r_sb);
+        t_sb.start();
         //로봇 ip 받기
         port = getResources().getInteger(R.integer.recvrobotipport);
-        RecieveRobotIp rri = new RecieveRobotIp(port);
-        Runnable r2 = rri;
-        Thread t2 = new Thread(r2);
-        t2.start();
+        ReceiveRobotIp rri = new ReceiveRobotIp(port);
+        Runnable r_rri = rri;
+        Thread t_rri = new Thread(r_rri);
+        t_rri.start();
         try {
-            t2.join(5000);
+            t_rri.join(5000);
             //로봇과 연결 실패시 종료
             robotip = rri.get_ip();
             if (robotip.equals("fail")) {
@@ -88,18 +88,18 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         //로봇의 로그인 모듈 실행
                         port = getResources().getInteger(R.integer.stringclassifyport);
-                        Runnable r = new SendString(robotip, port, "Login.py");
-                        Thread t = new Thread(r);
-                        t.start();
+                        Runnable r_ss = new SendString(robotip, port, "Login.py");
+                        Thread t_ss = new Thread(r_ss);
+                        t_ss.start();
 
                         //로그인 정보 전달
                         port = getResources().getInteger(R.integer.logininfoport);
                         SendRecvString srs = new SendRecvString(robotip, port, id+":::"+pass+":::");
-                        Runnable r1 = srs;
-                        Thread t1 = new Thread(r1);
-                        t1.start();
+                        Runnable r_srs = srs;
+                        Thread t_srs = new Thread(r_srs);
+                        t_srs.start();
                         try {
-                            t1.join();
+                            t_srs.join();
                             String logininfo = srs.getResult();
                             if(logininfo.equals("yes")){
                                 print_toast("Login!");
