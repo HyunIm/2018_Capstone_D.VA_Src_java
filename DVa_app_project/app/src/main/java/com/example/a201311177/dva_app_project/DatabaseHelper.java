@@ -86,16 +86,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String[] nameResult() {
         int j = 0;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST ", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM PICTURELIST", null);
+
         String[] result = new String[cursor.getCount()];
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             cursor.getString(1);
             do {
-                result[j] +=cursor.getString(1);//name
-
+                result[j] += cursor.getString(1);//name
                 j++;
-                if (j > cursor.getCount())
+                if (j >= cursor.getCount())
                     break;
 
             } while (cursor.moveToNext());
@@ -120,9 +120,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //                + cursor.getString(1)
 //                + "\n";
 //            i++;
+//            System.out.println(result[i]);
 //            if(i>cursor.getCount())
 //                break;
 //        }while (cursor.moveToNext());
 //        return result;
 //    }
-//    }
+//}

@@ -51,9 +51,8 @@ public class Thing_List_Management extends AppCompatActivity {
         hp = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);//객체생성
         arrayList=Arrays.asList(hp.nameResult());
         SQLiteDatabase db;
-        //itemList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        itemList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         itemList.setItemsCanFocus(false);
-
 //        DBAdapter db=new DBAdapter(this,cursor);
         try {
             //객체생성!!
