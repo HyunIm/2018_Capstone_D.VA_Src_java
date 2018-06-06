@@ -30,8 +30,7 @@ import java.util.List;
 //SQL에 있는 데이터 정보를 리스트 목록에 나타낸다.
 
 public class Thing_List_Management extends AppCompatActivity {
-    Button register_btn;
-    Button remove_btn;
+
     private ListView itemList;
     ArrayAdapter adapter;
     Cursor cursor;//객체가 없다.
@@ -45,9 +44,7 @@ public class Thing_List_Management extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thing__list__management);
-        register_btn = (Button) findViewById(R.id.register);
-        remove_btn = (Button) findViewById(R.id.remove);
-       itemList = (ListView) findViewById(R.id.itemlist);
+        itemList = (ListView) findViewById(R.id.itemlist);
         hp = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);//객체생성
         arrayList=Arrays.asList(hp.nameResult());
         SQLiteDatabase db;
