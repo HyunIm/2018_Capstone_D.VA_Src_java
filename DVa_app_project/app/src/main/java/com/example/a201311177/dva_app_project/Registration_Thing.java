@@ -21,8 +21,6 @@ import java.io.IOException;
 // 이 클래스에서 해야할 것 - SQLLIte 확인 버튼 누르면 연동시켜서 저장
 public class Registration_Thing extends AppCompatActivity {
     private final int GALLERY_CODE=1112;
-    Button yes_btn;
-    Button no_btn;
     Button find_btn;
     private ImageView image;
     //private Uri photoUri;
@@ -35,8 +33,7 @@ public class Registration_Thing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration__thing);
-        yes_btn =(Button)findViewById(R.id.yes);
-        no_btn=(Button)findViewById(R.id.no);
+
         find_btn=(Button)findViewById(R.id.find);
         _Text=(EditText)findViewById(R.id.editText);
         //db 객체 생성
@@ -55,8 +52,6 @@ public class Registration_Thing extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
         Toast.makeText(getBaseContext(), "resultCode : "+resultCode,Toast.LENGTH_SHORT).show();
 
         if(requestCode == GALLERY_CODE)
@@ -74,10 +69,7 @@ public class Registration_Thing extends AppCompatActivity {
                     //배치해놓은 ImageView에 set
                     image.setImageBitmap(image_bitmap);
 
-
                     //Toast.makeText(getBaseContext(), "name_Str : "+name_Str , Toast.LENGTH_SHORT).show();
-
-
                 } catch (FileNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -103,8 +95,10 @@ public class Registration_Thing extends AppCompatActivity {
         cursor.moveToFirst();
         String imgPath = cursor.getString(column_index);
         //String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
+
         return imgPath;
     }
+
     //확인 버튼 누른후 취소버튼 눌러야 리스트로 돌아감
     //확인 버튼에서 이름 같으면 메시지 출력하는 기능 넣어야함!!
     public void onButtonCheck(View v) {
@@ -114,21 +108,17 @@ public class Registration_Thing extends AppCompatActivity {
         final DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);
         String photo_path = imagePath;
         String name = _Text.getText().toString();
+
         if (name.length() == 0) {
             Toast.makeText(getApplicationContext(), "물건 이름을 입력해주세요.", Toast.LENGTH_LONG).show();
         }
-        else {
 
+        else {
             dbHelper.insert(photo_path, name);
             Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_LONG).show();
         }
 
-    }
-    //취소버튼 누르면 화면 리스트 잘 나옴!!!
-    public void onButtonCancel(View v) {
-        finish();
-        Intent in=new Intent(getApplicationContext(),Thing_List_Management.class);
-        startActivity(in);
-//
+        Intent ListIntent = new Intent(getApplicationContext(), Thing_List_Management.class);
+        startActivity(ListIntent);
     }
 }
