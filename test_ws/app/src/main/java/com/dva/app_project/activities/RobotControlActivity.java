@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import com.dva.app_project.R;
 import com.dva.app_project.imagesocket.ReceiveImage;
 import com.dva.app_project.internet.SendString;
+import com.dva.app_project.internet.SendStringInfinite;
 
 public class RobotControlActivity extends AppCompatActivity {
     ImageButton goforward;
@@ -25,7 +27,6 @@ public class RobotControlActivity extends AppCompatActivity {
     int port;
     String robotip;
     Thread t_frame = null;
-    boolean num = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,40 +50,40 @@ public class RobotControlActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 port = getResources().getInteger(R.integer.directionport);
-                Runnable r_ss = new SendString(robotip, port, "go_forward");
+                Runnable r_ss = new SendString(robotip, port, "RobotControl_base_forward.py");
                 Thread t_ss = new Thread(r_ss);
                 t_ss.start();
             }
         });
 
         goback = findViewById(R.id.reverse_btn);
-        goback.setOnClickListener(new ImageButton.OnClickListener() {
+        goback.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 port = getResources().getInteger(R.integer.directionport);
-                Runnable r_ss = new SendString(robotip, port, "move__back");
+                Runnable r_ss = new SendString(robotip, port, "RobotControl_base_goback.py");
                 Thread t_ss = new Thread(r_ss);
                 t_ss.start();
             }
         });
 
         turnleft = findViewById(R.id.turn_left_btn);
-        turnleft.setOnClickListener(new ImageButton.OnClickListener() {
+        turnleft.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 port = getResources().getInteger(R.integer.directionport);
-                Runnable r_ss = new SendString(robotip, port, "turn__left");
+                Runnable r_ss = new SendString(robotip, port, "RobotControl_base_turnleft.py");
                 Thread t_ss = new Thread(r_ss);
                 t_ss.start();
             }
         });
 
         turnright = findViewById(R.id.turn_right_btn);
-        turnright.setOnClickListener(new ImageButton.OnClickListener() {
+        turnright.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 port = getResources().getInteger(R.integer.directionport);
-                Runnable r_ss = new SendString(robotip, port, "turn_right");
+                Runnable r_ss = new SendString(robotip, port, "RobotControl_base_turnright.py");
                 Thread t_ss = new Thread(r_ss);
                 t_ss.start();
             }
@@ -93,7 +94,7 @@ public class RobotControlActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 port = getResources().getInteger(R.integer.directionport);
-                Runnable r_ss = new SendString(robotip, port, "stop");
+                Runnable r_ss = new SendString(robotip, port, "RobotControl_base_stop.py");
                 Thread t_ss = new Thread(r_ss);
                 t_ss.start();
             }
@@ -110,6 +111,10 @@ public class RobotControlActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         t_frame.interrupt();
+        port = getResources().getInteger(R.integer.directionport);
+        Runnable r_ss_tomove = new SendString(robotip, port, "cancel");
+        Thread t_ss_tomove = new Thread(r_ss_tomove);
+        t_ss_tomove.start();
         port = getResources().getInteger(R.integer.closeport);
         Runnable r_ss = new SendString(robotip, port, "cancel");
         Thread t_ss = new Thread(r_ss);
@@ -120,6 +125,10 @@ public class RobotControlActivity extends AppCompatActivity {
     @Override
     public void onUserLeaveHint() {
         t_frame.interrupt();
+        port = getResources().getInteger(R.integer.directionport);
+        Runnable r_ss_tomove = new SendString(robotip, port, "cancel");
+        Thread t_ss_tomove = new Thread(r_ss_tomove);
+        t_ss_tomove.start();
         port = getResources().getInteger(R.integer.closeport);
         Runnable r_ss = new SendString(robotip, port, "cancel");
         Thread t_ss = new Thread(r_ss);

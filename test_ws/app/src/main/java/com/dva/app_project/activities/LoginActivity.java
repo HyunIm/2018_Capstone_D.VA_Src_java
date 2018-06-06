@@ -91,6 +91,13 @@ public class LoginActivity extends AppCompatActivity {
                         Runnable r_ss = new SendString(robotip, port, "Login.py");
                         Thread t_ss = new Thread(r_ss);
                         t_ss.start();
+                        try {
+                            t_ss.join();
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
 
                         //로그인 정보 전달
                         port = getResources().getInteger(R.integer.logininfoport);

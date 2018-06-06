@@ -59,7 +59,12 @@ public class SignUpActivity extends AppCompatActivity {
                             Runnable r_ss = new SendString(robotip, port, "SignUp.py");//로봇 ip 알아내면 해당 ip 집어 넣기
                             Thread t_ss = new Thread(r_ss);
                             t_ss.start();
-
+                            try {
+                                t_ss.join();
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             //회원 가입 정보 전달
                             port = getResources().getInteger(R.integer.signupinfoport);
                             SendRecvString srs = new SendRecvString(robotip, port, id+":::"+pass+":::"+serial+":::");
@@ -69,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                             try {
                                 t_srs.join();
                                 String signupinfo = srs.getResult();
+                                System.out.println("==========="+signupinfo);
                                 if(signupinfo.equals("yes")){
                                     print_toast("가입 되었습니다!");
                                     Intent MoveLogin = new Intent(getApplicationContext(), LoginActivity.class);
