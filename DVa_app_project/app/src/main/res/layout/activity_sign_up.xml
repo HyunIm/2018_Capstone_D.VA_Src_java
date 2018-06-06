@@ -6,93 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".SignUp">
 
-    <EditText
-        android:id="@+id/editText_ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Input ID"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText_Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Input Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/editText_ID" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryDark">
 
-    <EditText
-        android:id="@+id/editText_SerialNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Input S/N"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="회원 가입"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:text="ID"
-        app:layout_constraintEnd_toStartOf="@+id/editText_ID"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Password"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_Password"
-        app:layout_constraintEnd_toStartOf="@+id/editText_Password"
-        app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="아이디"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:id="@+id/editText_ID"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:imeOptions="actionGo"
+                android:background="#ffffff"/>
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="16dp"
-        android:text="Serial Number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_SerialNumber"
-        app:layout_constraintEnd_toStartOf="@+id/editText_SerialNumber"
-        app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:id="@+id/editText_Password"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:imeOptions="actionGo"
+                android:background="#ffffff"/>
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:onClick="onButtonSignUp"
-        android:text="Sign Up"
-        app:layout_constraintStart_toStartOf="@+id/editText_SerialNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editText_SerialNumber" />
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="시리얼 넘버"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:id="@+id/editText_SerialNumber"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:imeOptions="actionGo"
+                android:background="#ffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onButtonSignUp"
+                android:text="회원 가입"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

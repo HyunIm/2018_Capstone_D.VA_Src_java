@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
         edit_pass = findViewById(R.id.editText_Password);
         edit_serial = findViewById(R.id.editText_SerialNumber);
 
+        //로봇 ip가져오기
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         robotip = pref.getString("robotip","");
 
@@ -55,18 +56,18 @@ public class SignUpActivity extends AppCompatActivity {
                         else{
                             //포트를 구하고 로봇에게 실행 할 프로그램 이름 전달(회원 가입 모듈 열기)
                             port = getResources().getInteger(R.integer.stringclassifyport);
-                            Runnable r = new SendString(robotip, port, "SignUp.py");//로봇 ip 알아내면 해당 ip 집어 넣기
-                            Thread t = new Thread(r);
-                            t.start();
+                            Runnable r_ss = new SendString(robotip, port, "SignUp.py");//로봇 ip 알아내면 해당 ip 집어 넣기
+                            Thread t_ss = new Thread(r_ss);
+                            t_ss.start();
 
                             //회원 가입 정보 전달
                             port = getResources().getInteger(R.integer.signupinfoport);
                             SendRecvString srs = new SendRecvString(robotip, port, id+":::"+pass+":::"+serial+":::");
-                            Runnable r1 = srs;
-                            Thread t1 = new Thread(r1);
-                            t1.start();
+                            Runnable r_srs = srs;
+                            Thread t_srs = new Thread(r_srs);
+                            t_srs.start();
                             try {
-                                t1.join();
+                                t_srs.join();
                                 String signupinfo = srs.getResult();
                                 if(signupinfo.equals("yes")){
                                     print_toast("가입 되었습니다!");
@@ -91,21 +92,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public void onBackPressed(){
-        //포트를 구하고 로봇에게 실행 할 프로그램 이름 전달(회원 가입 모듈 열기)
-        port = getResources().getInteger(R.integer.stringclassifyport);
-        Runnable r = new SendString(robotip, port, "SignUp.py");//로봇 ip 알아내면 해당 ip 집어 넣기
-        Thread t = new Thread(r);
-        t.start();
-
-        port = getResources().getInteger(R.integer.signupinfoport);
-        Runnable r1 = new SendString(robotip, port,"cancel:::");
-        Thread t1 = new Thread(r1);
-        t1.start();
-        super.onBackPressed();
     }
 
     private void print_toast(String toastmsg) {

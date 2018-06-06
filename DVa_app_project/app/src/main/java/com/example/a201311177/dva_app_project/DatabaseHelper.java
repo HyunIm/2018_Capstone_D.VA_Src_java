@@ -103,6 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 }
+//
 //    public String []ALlResult()
 //    {
 //        SQLiteDatabase db = getReadableDatabase();

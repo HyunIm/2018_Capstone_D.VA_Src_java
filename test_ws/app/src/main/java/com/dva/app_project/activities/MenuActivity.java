@@ -1,6 +1,7 @@
 package com.dva.app_project.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,11 +14,17 @@ public class MenuActivity extends AppCompatActivity {
     Button objectlist;
     Button searchobject;
     Button robotcontrol;
+    int port;
+    String robotip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        //로봇 ip가져오기
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        robotip = pref.getString("robotip","");
 
         //물건 리스트 관리 화면으로 전환
         objectlist = findViewById(R.id.ObjectList);
@@ -52,9 +59,10 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //로봇에게 실행 할 프로그램 이름 전달
-                Runnable r = new SendString("192.168.0.6", 5001, "RobotControl.py");//로봇 ip 알아내면 해당 ip 집어 넣기
-                Thread t = new Thread(r);
-                t.start();
+                port = getResources().getInteger(R.integer.stringclassifyport);
+                Runnable r_ss = new SendString(robotip, port, "RobotControl.py");//로봇 ip 알아내면 해당 ip 집어 넣기
+                Thread t_ss = new Thread(r_ss);
+                t_ss.start();
 
                 Intent MoveRobotControl = new Intent(getApplicationContext(), RobotControlActivity.class);
                 MoveRobotControl.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
