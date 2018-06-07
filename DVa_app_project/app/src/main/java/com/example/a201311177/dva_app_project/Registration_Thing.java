@@ -63,7 +63,7 @@ public class Registration_Thing extends AppCompatActivity {
                     imagePath = getImageNameToUri(data.getData());
                     System.out.println("사진경로:"+imagePath);
                     //이미지 데이터를 비트맵으로 받아온다.
-                    Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     image = (ImageView)findViewById(R.id.imageView1);
 
                     //배치해놓은 ImageView에 set
@@ -104,7 +104,7 @@ public class Registration_Thing extends AppCompatActivity {
     public void onButtonCheck(View v) {
         //Db에 데이터 넣은 뒤 완료되었습니다라는 메시지 창을 띄우고 초기화 또는 앱을 나간다.
         //일단 여기에 객체 생성
-        Thing_List_Management t= new Thing_List_Management();
+        Thing_List_Management t = new Thing_List_Management();
         final DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext(), "Photo.db", null, 1);
         String photo_path = imagePath;
         String name = _Text.getText().toString();
@@ -120,5 +120,6 @@ public class Registration_Thing extends AppCompatActivity {
 
         Intent ListIntent = new Intent(getApplicationContext(), Thing_List_Management.class);
         startActivity(ListIntent);
+        finish();
     }
 }

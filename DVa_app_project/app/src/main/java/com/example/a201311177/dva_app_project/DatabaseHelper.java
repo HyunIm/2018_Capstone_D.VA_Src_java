@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insert(String Photo_path, String name) {
-        SQLiteDatabase db = getWritableDatabase();//DB 읽고 쓰도록 열기
+        SQLiteDatabase db = getWritableDatabase(); //DB 읽고 쓰도록 열기
         //행 추가
         try {
             //만약 같은 사진을 중복으로 등록한다면??????

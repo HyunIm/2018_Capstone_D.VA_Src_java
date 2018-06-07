@@ -55,8 +55,8 @@ public class Thing_List_Management extends AppCompatActivity {
             //객체생성!!
             adapter = new ArrayAdapter<String>(Thing_List_Management.this, android.R.layout.simple_list_item_multiple_choice, arrayList);   // ArrayAdapter(this, 출력모양, 배열)
             itemList.setAdapter(adapter);
-            //Test
-
+            
+            // Test 출력용
             for (int index = 0; index < arrayList.size(); index++) {
                 System.out.println(arrayList.get(index));
                 System.out.println(hp.nameResult()[index]);
@@ -117,11 +117,9 @@ public class Thing_List_Management extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 // listview 갱신. 일단 삭제는 살짝 화면이 전환되는 문제 있음 나중에 수정해야할 듯..!!
 
-                finish();
                 Intent in=new Intent(getApplicationContext(),Thing_List_Management.class);
                 startActivity(in);
-
-
+                finish();
 //            }
         }
 
