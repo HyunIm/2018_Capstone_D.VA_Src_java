@@ -11,7 +11,7 @@
         android:id="@+id/RegisterView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="1dp"
         android:text="물건 등록"
         android:textAppearance="@android:style/TextAppearance.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +22,9 @@
         android:id="@+id/PhotoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="41dp"
-        android:layout_marginTop="43dp"
-        app:layout_constraintBottom_toBottomOf="@+id/NameView"
+        android:layout_marginBottom="29dp"
+        android:layout_marginTop="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/NameView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/RegisterView"
@@ -38,23 +38,18 @@
         android:layout_marginRight="16dp"
         android:text="물건 이름"
         app:layout_constraintBaseline_toBaselineOf="@+id/editText_name"
-        app:layout_constraintEnd_toStartOf="@+id/editText_name"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/editText_name" />
 
     <EditText
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="37dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="Input 물건 이름"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/SelectPhoto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NameView" />
+        app:layout_constraintEnd_toEndOf="@+id/Register" />
 
     <Button
         android:id="@+id/Register"
@@ -62,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="17dp"
         android:text="확인"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name" />
@@ -71,7 +66,7 @@
         android:id="@+id/SelectPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="36dp"
         android:layout_marginLeft="45dp"
         android:layout_marginStart="45dp"
         android:text="사진 찾기"
