@@ -66,6 +66,7 @@ public class ObjectRegistrationActivity extends AppCompatActivity {
                         if (checker) {
                             print_toast("같은 이름의 물건이 있습니다.\n다른 이름으로 등록해 주세요!");
                         } else {
+                            print_toast("저장 중 입니다...");
                             //가져온 사진을 내부 저장소에 저장
                             FileOutputStream outputStream = null;
                             try {

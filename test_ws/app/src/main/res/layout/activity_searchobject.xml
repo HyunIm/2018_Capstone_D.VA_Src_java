@@ -7,22 +7,11 @@
     tools:context=".activities.SearchObjectActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/accept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:text="요청"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
     <ListView
-        android:id="@+id/_dynamic"
+        android:id="@+id/itemlist"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="21dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -30,19 +19,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accept" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginBottom="9dp"
         android:layout_marginTop="8dp"
         android:text="물건 찾기"
         android:textAppearance="@android:style/TextAppearance.Large"
-        app:layout_constraintBottom_toTopOf="@+id/accept"
-        app:layout_constraintEnd_toEndOf="@+id/accept"
+        app:layout_constraintBottom_toTopOf="@+id/itemlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
