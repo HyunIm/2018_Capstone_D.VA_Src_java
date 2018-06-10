@@ -105,7 +105,7 @@ public class ObjectListActivity extends AppCompatActivity {
             // 리스트뷰의 아이템에 이미지를 변경한다.
             Bitmap src = BitmapFactory.decodeFile(files[position].getAbsolutePath());
             if(src != null){
-                src = Bitmap.createScaledBitmap(src, 300, 150, false);
+                //src = Bitmap.createScaledBitmap(src, 300, 150, false);
                 imageView.setImageBitmap(src);
             }
 

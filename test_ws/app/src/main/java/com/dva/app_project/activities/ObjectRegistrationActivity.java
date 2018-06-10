@@ -25,7 +25,6 @@ public class ObjectRegistrationActivity extends AppCompatActivity {
     Button selectphoto;
     EditText name;
     private final int GALLERY_CODE = 1112;
-    String robotip;
     Bitmap img = null;
 
     @Override
@@ -34,10 +33,6 @@ public class ObjectRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_objectregistration);
         photoview = findViewById(R.id.PhotoView);
         name = findViewById(R.id.editText_name);
-
-        //robot의 ip 가져오기
-        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        robotip = pref.getString("robotip", "");
 
         //물건 등록 후 물건 리스트 화면으로 전환
         register = findViewById(R.id.Register);
@@ -71,7 +66,8 @@ public class ObjectRegistrationActivity extends AppCompatActivity {
                             FileOutputStream outputStream = null;
                             try {
                                 outputStream = openFileOutput(img_name + ".png", MODE_PRIVATE);
-                                img.compress(Bitmap.CompressFormat.PNG, 50, outputStream);
+                                Bitmap result = Bitmap.createScaledBitmap(img, 300, 150, false);
+                                result.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                                 outputStream.flush();
                                 outputStream.close();
                             } catch (FileNotFoundException e) {

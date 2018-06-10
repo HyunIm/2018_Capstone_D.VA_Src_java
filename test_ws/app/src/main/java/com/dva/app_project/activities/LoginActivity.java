@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         Thread t_rri = new Thread(r_rri);
         t_rri.start();
         try {
-            t_rri.join(5000);
+            t_rri.join(10000);
             //로봇과 연결 실패시 종료
             robotip = rri.get_ip();
             if (robotip.equals("fail")) {
@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
+            print_toast("로봇을 와이파이에 연결해 주세요!");
+            finish();
         }
 
         //클래스간 ip 공유
