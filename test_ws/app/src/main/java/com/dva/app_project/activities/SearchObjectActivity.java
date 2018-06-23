@@ -40,6 +40,7 @@ public class SearchObjectActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         robotip = pref.getString("robotip", "");
 
+
         listView = findViewById(R.id.itemlist);
         final ArrayList<String> items = new ArrayList<>();
 
@@ -78,8 +79,9 @@ public class SearchObjectActivity extends AppCompatActivity {
                 t_ss.start();
                 try {
                     t_ss.join();
-                    Thread.sleep(10);
+                    Thread.sleep(100);
                     port = getResources().getInteger(R.integer.searchobjectport);
+                    print_toast(robotip);
                     Runnable r_si = new SendImage(robotip, port, list[num]);
                     Thread t_si = new Thread(r_si);
                     t_si.start();

@@ -31,7 +31,7 @@ public class SendImage implements Runnable {
             byte[] bytes = new byte[(int)file.length()];
             bis.read(bytes);
            // byte[] result = Base64.encode(bytes, 0);
-            Socket socket = new Socket(robotip, port);
+            Socket socket = new Socket(this.robotip, this.port);
             os = socket.getOutputStream();
             os.write((Integer.toString(bytes.length)+":::").getBytes());
             System.out.println(Integer.toString(bytes.length)+"----------------------");
