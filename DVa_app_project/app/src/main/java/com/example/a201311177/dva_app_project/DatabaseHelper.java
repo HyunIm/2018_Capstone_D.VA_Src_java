@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             cursor.getString(1);
             do {
-                result[j] += cursor.getString(0);//photopath
+                result[j] = cursor.getString(0);//photopath
                 j++;
                 if (j > cursor.getCount())
                     break;
@@ -93,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             cursor.getString(1);
             do {
-                result[j] += cursor.getString(1);//name
+                result[j] = cursor.getString(1);//name
                 j++;
                 if (j >= cursor.getCount())
                     break;
