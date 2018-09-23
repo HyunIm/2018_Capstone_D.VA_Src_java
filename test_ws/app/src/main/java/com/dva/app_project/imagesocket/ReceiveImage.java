@@ -81,7 +81,7 @@ public class ReceiveImage implements Runnable{
 
                                 //byte[] bs = Base64.getDecoder().decode(s.getBytes());
                             } catch (IllegalArgumentException e) {
-                                System.out.println("bases64decode");
+                                //System.out.println("bases64decode");
                             } catch (NullPointerException e) {
                                 System.out.println("ImageIcon");
                             }

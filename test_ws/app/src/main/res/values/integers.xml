@@ -9,4 +9,6 @@
     <integer name="directionport">5006</integer>
     <integer name="closeport">5007</integer>
     <integer name="searchobjectport">5008</integer>
+    <integer name="findobjectname">5009</integer>
+    <integer name="searchobject">5010</integer>
 </resources>

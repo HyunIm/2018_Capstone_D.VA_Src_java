@@ -11,9 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dva.app_project.R;
 import com.dva.app_project.imagesocket.ReceiveImage;
+import com.dva.app_project.internet.ReceiveString;
+import com.dva.app_project.internet.SendRecvString;
 import com.dva.app_project.internet.SendString;
 import com.dva.app_project.internet.SendStringInfinite;
 
@@ -24,6 +28,8 @@ public class RobotControlActivity extends AppCompatActivity {
     ImageButton turnright;
     Button stop;
     ImageView frame;
+    TextView textView;
+    Button button;
     int port;
     String robotip;
     Thread t_frame = null;
@@ -32,6 +38,7 @@ public class RobotControlActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robotcontrol);
+        textView = findViewById(R.id.textView);
 
         //로봇 ip가져오기
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
@@ -99,6 +106,32 @@ public class RobotControlActivity extends AppCompatActivity {
                 t_ss.start();
             }
         });
+
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                textView.setText("잠시만 기다려주세요!");
+                port = getResources().getInteger(R.integer.findobjectname);
+                Runnable r_ss_find = new SendString(robotip, port, "now");
+                Thread t_ss_find = new Thread(r_ss_find);
+                t_ss_find.start();
+                try {
+                    t_ss_find.join();
+                    try {
+                        Thread.sleep(5000);
+                        port = getResources().getInteger(R.integer.searchobject);
+                        Runnable r_rs_search = new ReceiveString(robotip, port, han_text);
+                        Thread t_rs_search = new Thread(r_rs_search);
+                        t_rs_search.start();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     Handler han = new Handler() {
@@ -108,6 +141,19 @@ public class RobotControlActivity extends AppCompatActivity {
         }
     };
 
+    Handler han_text = new Handler() {
+        public void handleMessage(Message msg) {
+            String data = msg.getData().getString("data","무엇인지 모르겠어요.");
+            textView.setText(data+"입니다!!");
+        }
+    };
+
+    @Override
+    public void onStop(){
+        Toast.makeText(getApplicationContext(), "로봇을 대기모드로 전환하였습니다.", Toast.LENGTH_LONG).show();
+        super.onStop();
+    }
+
     @Override
     public void onBackPressed() {
         t_frame.interrupt();
@@ -115,10 +161,27 @@ public class RobotControlActivity extends AppCompatActivity {
         Runnable r_ss_tomove = new SendString(robotip, port, "cancel");
         Thread t_ss_tomove = new Thread(r_ss_tomove);
         t_ss_tomove.start();
+
+        port = getResources().getInteger(R.integer.findobjectname);
+        Runnable r_ss_find = new SendString(robotip, port, "cancel");
+        Thread t_ss_find = new Thread(r_ss_find);
+        t_ss_find.start();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         port = getResources().getInteger(R.integer.closeport);
         Runnable r_ss = new SendString(robotip, port, "cancel");
         Thread t_ss = new Thread(r_ss);
         t_ss.start();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         super.onBackPressed();
     }
 
@@ -129,11 +192,33 @@ public class RobotControlActivity extends AppCompatActivity {
         Runnable r_ss_tomove = new SendString(robotip, port, "cancel");
         Thread t_ss_tomove = new Thread(r_ss_tomove);
         t_ss_tomove.start();
+
+        port = getResources().getInteger(R.integer.findobjectname);
+        Runnable r_ss_find = new SendString(robotip, port, "cancel");
+        Thread t_ss_find = new Thread(r_ss_find);
+        t_ss_find.start();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         port = getResources().getInteger(R.integer.closeport);
         Runnable r_ss = new SendString(robotip, port, "cancel");
         Thread t_ss = new Thread(r_ss);
         t_ss.start();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         super.onUserLeaveHint();
         super.onBackPressed();
+    }
+
+    private void print_toast(String toastmsg) {
+        //로봇과 연결 실패
+        Toast.makeText(getApplicationContext(), toastmsg, Toast.LENGTH_LONG).show();
     }
 }

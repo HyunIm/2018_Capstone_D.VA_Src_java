@@ -5,69 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RobotControlActivity"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="80dp">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="174dp"
-        app:layout_constraintBottom_toTopOf="@+id/reverse_btn"
+        android:layout_width="385dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="15dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/forward_btn"
-        android:layout_width="83dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toTopOf="@+id/stop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/forward" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/forward"/>
 
     <ImageButton
         android:id="@+id/turn_left_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="290dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reverse_btn"
-        app:srcCompat="@drawable/forward_left" />
+        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/forward_left"/>
 
     <ImageButton
         android:id="@+id/turn_right_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/reverse_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="290dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/stop"
-        app:srcCompat="@drawable/forward_right" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/forward_right"/>
 
     <ImageButton
         android:id="@+id/reverse_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/turn_right_btn"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/reverse" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stop"
+        app:srcCompat="@drawable/reverse"/>
 
     <Button
         android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
         android:text="Stop"
-        app:layout_constraintBottom_toBottomOf="@+id/turn_left_btn"
-        app:layout_constraintEnd_toEndOf="@+id/forward_btn" />
+        app:layout_constraintBottom_toTopOf="@+id/reverse_btn"
+        app:layout_constraintEnd_toStartOf="@+id/turn_right_btn"
+        app:layout_constraintStart_toEndOf="@+id/turn_left_btn"
+        app:layout_constraintTop_toBottomOf="@+id/forward_btn" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="10dp"
+        android:text="물건 확인"
+        app:layout_constraintBottom_toTopOf="@+id/turn_right_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="210dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="50dp"
+        android:text="물건이 무엇인지 확인해 볼까요?"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/forward_btn"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </android.support.constraint.ConstraintLayout>
